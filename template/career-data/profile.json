@@ -1,0 +1,35 @@
+{
+  "name": "Your Name",
+  "headline": "Your Professional Headline (e.g., AI Product Engineer, Senior Frontend Architect)",
+  "location": "City, Country",
+  "summary": "Describe the main problems you solve, the business value you create, and the high-impact work you want to do. Keep it objective, factual, and free of vague adjectives.",
+  "links": [
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/yourname" },
+    { "label": "GitHub", "url": "https://github.com/yourname" }
+  ],
+  "capabilities": [
+    "Product strategy",
+    "Rapid prototyping",
+    "Workflow automation"
+  ],
+  "experience": [
+    {
+      "company": "Example Company",
+      "role": "Product Role",
+      "period": "2024–Present",
+      "summary": "Explain your core responsibilities, team structures, and the broader business context in which you operated.",
+      "evidence": [
+        "Designed and deployed a repeatable automation workflow reducing cycles by 40%",
+        "Coordinated across 4 stakeholders to deliver a production-ready MVP on schedule"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Example Product",
+      "description": "A concise explanation of the problem you solved, your specific architectural choices, and your exact boundaries of contribution.",
+      "skills": ["Product discovery", "AI-assisted development", "Next.js"],
+      "url": "https://example.com"
+    }
+  ]
+}

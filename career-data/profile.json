@@ -1,0 +1,35 @@
+{
+  "name": "Your Name",
+  "headline": "Your professional headline",
+  "location": "City, Country",
+  "summary": "Describe the problems you solve, the value you create and the type of work you want to do.",
+  "links": [
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/yourname" },
+    { "label": "GitHub", "url": "https://github.com/yourname" }
+  ],
+  "capabilities": [
+    "Product strategy",
+    "Rapid prototyping",
+    "Workflow automation"
+  ],
+  "experience": [
+    {
+      "company": "Example Company",
+      "role": "Product Role",
+      "period": "2024–Present",
+      "summary": "Explain your responsibility and the business context.",
+      "evidence": [
+        "Designed a repeatable workflow",
+        "Delivered a working prototype"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Example Product",
+      "description": "A concise explanation of the problem, solution and your role.",
+      "skills": ["Product discovery", "AI-assisted development"],
+      "url": "https://example.com"
+    }
+  ]
+}
