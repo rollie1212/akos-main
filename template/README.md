@@ -1,76 +1,118 @@
-# AKOS Portfolio Template 🚀
+# AKOS Core Portfolio Template
 
-This is the **clean, lightweight standalone portfolio template** from [AKOS Core](https://github.com/rollie1212/akos-core). It is a production-ready, high-performance personal career portfolio website designed with Swiss/modern minimalism and strict visual hygiene.
+This folder contains the standalone portfolio template users copy into their own repository.
 
-## Core Features
-* 📂 **Complete Data Ownership**: Your entire portfolio is powered by a portable `career-data/profile.json` database.
-* ⚡ **Ultra Fast**: Built using Next.js App Router and optimized Google Fonts.
-* 🎨 **Editorial Visuals**: Styled with premium typography (Space Grotesk & Inter) and subtle framer-motion transitions.
-* ☁️ **Self-Hosted & Free**: Deploy to Vercel in 1 click under your personal account for $0/mo.
+## Reference links
 
----
+- Product repository: https://github.com/rollie1212/akos-main
+- Personal reference repository: https://github.com/rollie1212/akos-new
+- Live reference website: https://akos-mu.vercel.app/
 
-## 🛠️ Quick Start
+## What this template currently includes
 
-### 1. Copy or fork this directory
-You can fork the main repository and copy the contents of the `/template` folder into your own repository, or use the template directly.
+- a Next.js portfolio application;
+- structured career data in `career-data/profile.json`;
+- capabilities, experience, evidence and project sections;
+- Zod validation for profile data;
+- the AKOS Core editorial visual system;
+- Vercel-compatible deployment.
 
-### 2. Install dependencies
-From the template root folder, run:
+The current template does **not** include the DeepSeek Markdown assistant. Do not add `DEEPSEEK_API_KEY` unless the AI chat route and supporting files are added back to the template.
+
+## Recommended setup
+
+Create a new empty GitHub repository and copy the **contents** of `/template` into its root.
+
+Correct structure:
+
+```text
+app/
+components/
+career-data/
+lib/
+public/
+package.json
+README.md
+```
+
+Incorrect structure:
+
+```text
+template/app/
+template/components/
+```
+
+Vercel must see `package.json` at repository root.
+
+## 1. Replace the demo career data
+
+Open:
+
+```text
+career-data/profile.json
+```
+
+Replace the example content with the user's verified data.
+
+The profile currently supports:
+
+- name;
+- headline;
+- location;
+- professional summary;
+- public links;
+- capabilities;
+- work experience;
+- evidence points;
+- selected projects.
+
+## 2. Install and run locally
+
 ```bash
 npm install
-```
-
-### 3. Start development server
-```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) to see your portfolio live.
 
----
+Open:
 
-## 📂 Customizing Your Data
-
-Simply open `career-data/profile.json` and replace the placeholder fields with your own professional records:
-
-```json
-{
-  "name": "Your Name",
-  "headline": "AI Product Engineer, Senior Architect...",
-  "location": "San Francisco, CA",
-  "summary": "Focused, objective summary of the problems you solve...",
-  "links": [
-    { "label": "LinkedIn", "url": "https://linkedin.com/in/yourname" }
-  ],
-  "capabilities": [
-    "Rapid prototyping",
-    "Technical Architecture"
-  ],
-  "experience": [
-    {
-      "company": "Stripe",
-      "role": "Staff Engineer",
-      "period": "2022–Present",
-      "summary": "Led global core billing engine migration...",
-      "evidence": [
-        "Reduced transaction latency by 14% at scale",
-        "Shipped 3 major API versions with zero downtime"
-      ]
-    }
-  ]
-}
+```text
+http://localhost:3000
 ```
 
-If you introduce syntax errors or miss required fields, the built-in **Zod validation engine** will report precisely what lines to fix on your screen.
+## 3. Deploy to Vercel
 
----
+1. Push the copied template to the user's GitHub repository.
+2. Sign in to Vercel with GitHub.
+3. Create a new project.
+4. Select the personal repository.
+5. Keep the detected Next.js settings.
+6. Deploy.
 
-## 🚀 Deploy to Vercel (1-Click)
+Every later commit triggers a new Vercel deployment.
 
-1. Sign up on [Vercel](https://vercel.com/) with your GitHub account.
-2. Click **Add New Project**.
-3. Select your personalized portfolio repository.
-4. Keep the default Next.js build settings.
-5. Click **Deploy**.
+## Expected result
 
-With every future commit you push to your GitHub repository (e.g. updating a new milestone in `profile.json`), Vercel will automatically rebuild and deploy your updated live site!
+The finished site should use the same AKOS Core visual foundation as the live reference while displaying the user's own verified career data.
+
+The template provides the foundation, not a copy of Andrii's personal content or the complete feature set of `akos-new`.
+
+## Security checklist
+
+Before publishing:
+
+- remove private contact details that should not be public;
+- verify every metric and achievement;
+- distinguish personal contribution from team contribution;
+- describe prototypes and MVPs accurately;
+- use secure `https://` links;
+- do not commit API keys or secrets.
+
+## Attribution
+
+Keep attribution to the original AKOS Core project:
+
+https://github.com/rollie1212/akos-main
+
+## License
+
+MIT. Preserve the original copyright and license notice.
