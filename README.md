@@ -2,9 +2,9 @@
 
 **AKOS Core is a free, open-source, AI-native career operating system.**
 
-It turns a CV, LinkedIn profile and project notes into structured career data that can power a personal portfolio and future career materials.
+It turns a CV, LinkedIn profile and project notes into structured career data that can power a personal portfolio, future career materials and an optional AI assistant grounded in Markdown.
 
-## Current project map
+## Project map
 
 - Product repository: https://github.com/rollie1212/akos-main
 - Personal reference repository: https://github.com/rollie1212/akos-new
@@ -22,7 +22,7 @@ akos-main/
 
 The `/template` folder is the part users copy into a new personal repository.
 
-## Current user workflow
+## User workflow
 
 ```text
 CV + LinkedIn + project notes
@@ -31,11 +31,13 @@ verified fact extraction
               ↓
 career-data/profile.json
               ↓
+knowledge/*.md
+              ↓
 copy /template into a personal repository
               ↓
-Vercel deployment
+Vercel deployment + personal DeepSeek key
               ↓
-personal AKOS Core portfolio
+personal AKOS Core portfolio + AI assistant
 ```
 
 ## Quick start
@@ -45,18 +47,23 @@ personal AKOS Core portfolio
 2. Create a new empty GitHub repository.
 3. Copy the **contents** of `/template` into the new repository root.
 4. Replace `career-data/profile.json` with verified career data.
-5. Import the personal repository into Vercel.
-6. Deploy and review the final portfolio.
+5. Add factual Markdown files under `knowledge/`.
+6. Import the personal repository into Vercel.
+7. Add `DEEPSEEK_API_KEY` in Vercel Environment Variables.
+8. Redeploy and test the portfolio and assistant.
 
-Detailed template instructions are in [`template/README.md`](template/README.md).
+Detailed instructions are in [`template/README.md`](template/README.md).
 
-## Important current limitation
+## DeepSeek security
 
-The current `/template` does not include the DeepSeek Markdown assistant.
+The optional assistant uses server-side environment variables:
 
-Do not configure `DEEPSEEK_API_KEY` unless the chat API route and supporting knowledge files are added back to the template.
+```env
+DEEPSEEK_API_KEY=
+DEEPSEEK_MODEL=deepseek-chat
+```
 
-The live reference in `akos-new` has a broader feature set than the current public template.
+Never commit the real key and never use the `NEXT_PUBLIC_` prefix.
 
 ## Product pages
 
@@ -65,7 +72,7 @@ The live reference in `akos-new` has a broader feature set than the current publ
 - `/prompts` — prompt workflow;
 - `/examples` — live and source examples;
 - `/pricing` — Free plan and future products;
-- `/support` — AKOS Core support route.
+- `/support` — support route.
 
 ## Product principles
 
@@ -73,7 +80,8 @@ The live reference in `akos-new` has a broader feature set than the current publ
 - The user's repository and deployment belong to the user.
 - AI must not invent employers, dates, metrics, skills or responsibilities.
 - Strong claims should be supported by evidence.
-- The template must remain portable and self-hostable.
+- The portfolio remains usable without the AI assistant.
+- The template remains portable and self-hostable.
 
 ## Development
 
