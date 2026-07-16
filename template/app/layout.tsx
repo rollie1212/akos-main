@@ -9,7 +9,7 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mon
 
 export const metadata: Metadata = {
   title: "My AKOS Portfolio",
-  description: "My professional career database and AI portfolio, powered by AKOS Core.",
+  description: "My professional career database and AI portfolio, powered by AKOS.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
