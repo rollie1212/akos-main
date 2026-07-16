@@ -1,210 +1,76 @@
-# AKOS Portfolio Template
+# AKOS Portfolio Template 🚀
 
-This folder is the recommended starting point for a personal AKOS website.
+This is the **clean, lightweight standalone portfolio template** from [AKOS Core](https://github.com/rollie1212/akos-core). It is a production-ready, high-performance personal career portfolio website designed with Swiss/modern minimalism and strict visual hygiene.
 
-It produces an editorial career portfolio based on the same product principles as the reference implementation:
+## Core Features
+* 📂 **Complete Data Ownership**: Your entire portfolio is powered by a portable `career-data/profile.json` database.
+* ⚡ **Ultra Fast**: Built using Next.js App Router and optimized Google Fonts.
+* 🎨 **Editorial Visuals**: Styled with premium typography (Space Grotesk & Inter) and subtle framer-motion transitions.
+* ☁️ **Self-Hosted & Free**: Deploy to Vercel in 1 click under your personal account for $0/mo.
 
-- Live example: https://akos-mu.vercel.app/
-- Personal reference repository: https://github.com/rollie1212/akos-new
-- Product repository: https://github.com/rollie1212/akos-main
+---
 
-The template includes:
+## 🛠️ Quick Start
 
-- structured portfolio data in `career-data/profile.json`;
-- capabilities, experience and project sections;
-- the AKOS editorial design system;
-- factual validation with Zod;
-- Markdown career knowledge files;
-- an optional DeepSeek-powered AI portfolio assistant;
-- permanent attribution to the AKOS project.
+### 1. Copy or fork this directory
+You can fork the main repository and copy the contents of the `/template` folder into your own repository, or use the template directly.
 
-## Recommended setup
-
-Do not deploy the entire `akos-main` product repository as your personal portfolio.
-
-Create a new empty GitHub repository and copy the **contents** of the `/template` folder into its root.
-
-Your new repository should look like this:
-
-```text
-app/
-components/
-career-data/
-knowledge/
-lib/
-public/
-package.json
-README.md
-```
-
-It should not look like:
-
-```text
-template/app/
-template/components/
-```
-
-Vercel must see `package.json` at the repository root.
-
-## 1. Create your career profile
-
-Open:
-
-```text
-career-data/profile.json
-```
-
-Replace the example content with the JSON generated during the AKOS onboarding process.
-
-This file controls:
-
-- your name and headline;
-- location and professional summary;
-- public links;
-- capabilities;
-- employment history;
-- evidence points;
-- selected projects.
-
-The site validates the file before rendering. Invalid JSON produces a readable configuration error instead of a blank page.
-
-## 2. Build the Markdown knowledge base
-
-The public portfolio is generated from `profile.json`.
-
-The AI assistant is grounded in Markdown files stored in:
-
-```text
-knowledge/
-career-data/
-```
-
-Recommended structure:
-
-```text
-knowledge/
-├── about.md
-├── skills.md
-├── working-style.md
-├── claim-boundaries.md
-├── experience/
-│   ├── company-one.md
-│   └── company-two.md
-└── projects/
-    ├── project-one.md
-    └── project-two.md
-```
-
-Each Markdown file should describe verified facts, personal contribution, evidence, project status and claim boundaries.
-
-The assistant reads all `.md` files recursively. A starter example is included in `knowledge/README.md`.
-
-## 3. Add a personal DeepSeek API key
-
-The AI assistant is optional. The portfolio works without it.
-
-Create a personal DeepSeek API key in your own DeepSeek account.
-
-### Local development
-
-Copy the environment example:
-
-```bash
-cp .env.example .env.local
-```
-
-Then add:
-
-```env
-DEEPSEEK_API_KEY=your_private_key
-DEEPSEEK_MODEL=deepseek-chat
-```
-
-Never commit `.env.local` or the real key to GitHub.
-
-### Vercel
-
-After importing the repository into Vercel:
-
-1. Open **Project → Settings → Environment Variables**.
-2. Add `DEEPSEEK_API_KEY`.
-3. Paste the user's personal DeepSeek key.
-4. Optionally add `DEEPSEEK_MODEL=deepseek-chat`.
-5. Apply the variables to Production, Preview and Development.
-6. Redeploy the project.
-
-The key is read only by the server-side `/api/chat` route. It is not included in browser JavaScript and must never use the `NEXT_PUBLIC_` prefix.
-
-## 4. Run locally
-
+### 2. Install dependencies
+From the template root folder, run:
 ```bash
 npm install
+```
+
+### 3. Start development server
+```bash
 npm run dev
 ```
+Open [http://localhost:3000](http://localhost:3000) to see your portfolio live.
 
-Open:
+---
 
-```text
-http://localhost:3000
+## 📂 Customizing Your Data
+
+Simply open `career-data/profile.json` and replace the placeholder fields with your own professional records:
+
+```json
+{
+  "name": "Your Name",
+  "headline": "AI Product Engineer, Senior Architect...",
+  "location": "San Francisco, CA",
+  "summary": "Focused, objective summary of the problems you solve...",
+  "links": [
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/yourname" }
+  ],
+  "capabilities": [
+    "Rapid prototyping",
+    "Technical Architecture"
+  ],
+  "experience": [
+    {
+      "company": "Stripe",
+      "role": "Staff Engineer",
+      "period": "2022–Present",
+      "summary": "Led global core billing engine migration...",
+      "evidence": [
+        "Reduced transaction latency by 14% at scale",
+        "Shipped 3 major API versions with zero downtime"
+      ]
+    }
+  ]
+}
 ```
 
-Test both parts:
+If you introduce syntax errors or miss required fields, the built-in **Zod validation engine** will report precisely what lines to fix on your screen.
 
-1. The portfolio renders the correct personal information.
-2. The assistant answers factual questions from the Markdown files.
+---
 
-Example questions:
+## 🚀 Deploy to Vercel (1-Click)
 
-- What products has this person built?
-- What was their contribution to Project X?
-- Which capabilities are supported by evidence?
-- Is this person a fit for the following role?
+1. Sign up on [Vercel](https://vercel.com/) with your GitHub account.
+2. Click **Add New Project**.
+3. Select your personalized portfolio repository.
+4. Keep the default Next.js build settings.
+5. Click **Deploy**.
 
-The assistant is instructed not to invent undocumented facts.
-
-## 5. Deploy to Vercel
-
-1. Push the copied template to the user's GitHub repository.
-2. Sign in to Vercel with GitHub.
-3. Click **Add New Project**.
-4. Select the personal repository.
-5. Keep the detected Next.js settings.
-6. Add `DEEPSEEK_API_KEY` if the assistant should be enabled.
-7. Click **Deploy**.
-
-Every later GitHub commit automatically updates the website.
-
-## Expected result
-
-A successful onboarding should produce:
-
-- a polished personal website visually aligned with https://akos-mu.vercel.app/;
-- the user's own positioning, experience and projects;
-- a structured and reusable career database;
-- a Markdown knowledge base stored in the user's GitHub;
-- an optional AI assistant powered by the user's own DeepSeek account;
-- no dependency on an AKOS-hosted user database.
-
-The exact content and number of project pages depend on how complete the user's source material is. The template provides the same foundation, not a copy of Andrii's personal data.
-
-## Security checklist
-
-Before publishing:
-
-- no API keys are committed to GitHub;
-- no private phone number or address is exposed accidentally;
-- every metric is verifiable;
-- prototype projects are not described as production systems;
-- team work is not presented as individual ownership;
-- Markdown contains no confidential employer information;
-- all public links use `https://`.
-
-## AKOS project
-
-Every generated website keeps attribution to the original AKOS project:
-
-https://github.com/rollie1212/akos-main
-
-## License
-
-MIT. Preserve the original copyright and license notice.
+With every future commit you push to your GitHub repository (e.g. updating a new milestone in `profile.json`), Vercel will automatically rebuild and deploy your updated live site!
