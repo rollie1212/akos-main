@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 
 type Message = { role: "user" | "assistant"; content: string };
 
-export default function CareerChat({ personName }: { personName: string }) {
+export default function CareerChat() {
   const [open, setOpen] = useState(false);
   const [draft, setDraft] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -38,35 +38,37 @@ export default function CareerChat({ personName }: { personName: string }) {
     }
   }
 
+  const shell = { position: "fixed" as const, right: 20, bottom: 20, zIndex: 50 };
+
   if (!open) {
     return (
-      <button className="career-chat__launcher" type="button" onClick={() => setOpen(true)}>
-        Ask about {personName}
-      </button>
+      <div style={shell}>
+        <button style={{ border: 0, borderRadius: 999, background: "#0e0f11", color: "white", padding: "13px 18px", fontWeight: 700, cursor: "pointer" }} type="button" onClick={() => setOpen(true)}>
+          Ask this profile
+        </button>
+      </div>
     );
   }
 
   return (
-    <section className="career-chat__panel" aria-label={`Ask about ${personName}`}>
-      <header className="career-chat__header">
-        <div><strong>Ask about {personName}</strong><span>AI portfolio assistant</span></div>
-        <button type="button" onClick={() => setOpen(false)} aria-label="Close chat">×</button>
+    <section style={{ ...shell, width: "min(400px, calc(100vw - 32px))", height: "min(600px, calc(100vh - 40px))", background: "white", border: "1px solid #e6e4de", borderRadius: 14, boxShadow: "0 24px 68px rgba(11,11,12,.16)", display: "grid", gridTemplateRows: "auto 1fr auto", overflow: "hidden" }} aria-label="AI portfolio assistant">
+      <header style={{ padding: 14, borderBottom: "1px solid #e6e4de", display: "flex", justifyContent: "space-between", gap: 12 }}>
+        <div><strong style={{ display: "block" }}>Ask this profile</strong><span style={{ color: "#717680", fontSize: 12 }}>Answers from the Markdown knowledge base</span></div>
+        <button style={{ border: 0, background: "transparent", fontSize: 24, cursor: "pointer" }} type="button" onClick={() => setOpen(false)} aria-label="Close chat">×</button>
       </header>
-      <div className="career-chat__body" aria-live="polite">
-        {messages.length === 0 ? (
-          <p>Ask about experience, projects, skills or fit for a role. Answers use only the Markdown knowledge base in this repository.</p>
-        ) : null}
+      <div style={{ padding: 16, overflowY: "auto", display: "grid", alignContent: "start", gap: 12 }} aria-live="polite">
+        {messages.length === 0 ? <p style={{ margin: 0, color: "#2d3036" }}>Ask about experience, projects, skills or fit for a role.</p> : null}
         {messages.map((message, index) => (
-          <article className={`career-chat__message career-chat__message--${message.role}`} key={`${message.role}-${index}`}>
+          <article key={`${message.role}-${index}`} style={{ whiteSpace: "pre-wrap", lineHeight: 1.55, padding: message.role === "user" ? "9px 11px" : 0, background: message.role === "user" ? "#f2f1ed" : "transparent", borderRadius: 10, justifySelf: message.role === "user" ? "end" : "start", maxWidth: "92%" }}>
             {message.content}
           </article>
         ))}
-        {loading ? <p>Thinking…</p> : null}
-        {error ? <p className="career-chat__error">{error}</p> : null}
+        {loading ? <p style={{ margin: 0 }}>Thinking…</p> : null}
+        {error ? <p style={{ margin: 0, color: "#8b1e1e", fontSize: 13 }}>{error}</p> : null}
       </div>
-      <form className="career-chat__form" onSubmit={submit}>
-        <textarea value={draft} onChange={(event) => setDraft(event.target.value)} maxLength={2000} placeholder="Ask a factual question" rows={3} />
-        <button type="submit" disabled={loading || !draft.trim()}>Send</button>
+      <form style={{ padding: 12, borderTop: "1px solid #e6e4de", display: "grid", gap: 8 }} onSubmit={submit}>
+        <textarea style={{ width: "100%", resize: "none", border: "1px solid #e6e4de", borderRadius: 10, padding: 12, font: "inherit" }} value={draft} onChange={(event) => setDraft(event.target.value)} maxLength={2000} placeholder="Ask a factual question" rows={3} />
+        <button style={{ justifySelf: "end", border: 0, borderRadius: 999, background: "#0f625c", color: "white", padding: "10px 16px", fontWeight: 700, cursor: "pointer" }} type="submit" disabled={loading || !draft.trim()}>Send</button>
       </form>
     </section>
   );
