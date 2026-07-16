@@ -8,12 +8,12 @@ export default function SupportFooter() {
           Personal Site
         </strong>
         <p style={{ color: "var(--muted)", margin: "8px 0 0", fontSize: "14px" }}>
-          All rights reserved.
+          Career data owned by the profile author.
         </p>
       </div>
       <div className="site-footer__links" style={{ display: "flex", gap: "24px", alignItems: "center" }}>
         <a
-          href="https://github.com/rollie1212/akos-core"
+          href="https://github.com/rollie1212/akos-main"
           target="_blank"
           rel="noreferrer"
           style={{
@@ -22,7 +22,7 @@ export default function SupportFooter() {
             fontWeight: "550",
           }}
         >
-          Powered by AKOS Core ↗
+          Powered by AKOS ↗
         </a>
       </div>
     </footer>
