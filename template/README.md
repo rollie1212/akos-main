@@ -16,7 +16,7 @@ The template includes:
 - factual validation with Zod;
 - Markdown career knowledge files;
 - an optional DeepSeek-powered AI portfolio assistant;
-- permanent attribution and support for AKOS development.
+- permanent attribution to the AKOS project.
 
 ## Recommended setup
 
@@ -199,11 +199,11 @@ Before publishing:
 - Markdown contains no confidential employer information;
 - all public links use `https://`.
 
-## Support AKOS
+## AKOS project
 
-Every generated website keeps a footer link to support the original AKOS project:
+Every generated website keeps attribution to the original AKOS project:
 
-https://akos-core.vercel.app/support
+https://github.com/rollie1212/akos-main
 
 ## License
 
