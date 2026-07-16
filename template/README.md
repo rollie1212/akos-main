@@ -8,16 +8,16 @@ This folder contains the standalone portfolio template users copy into their own
 - Personal reference repository: https://github.com/rollie1212/akos-new
 - Live reference website: https://akos-mu.vercel.app/
 
-## What this template currently includes
+## What this template includes
 
 - a Next.js portfolio application;
 - structured career data in `career-data/profile.json`;
 - capabilities, experience, evidence and project sections;
 - Zod validation for profile data;
-- the AKOS Core editorial visual system;
+- Markdown career knowledge under `knowledge/`;
+- a server-side DeepSeek API route;
+- a floating AI portfolio assistant;
 - Vercel-compatible deployment.
-
-The current template does **not** include the DeepSeek Markdown assistant. Do not add `DEEPSEEK_API_KEY` unless the AI chat route and supporting files are added back to the template.
 
 ## Recommended setup
 
@@ -29,6 +29,7 @@ Correct structure:
 app/
 components/
 career-data/
+knowledge/
 lib/
 public/
 package.json
@@ -46,72 +47,101 @@ Vercel must see `package.json` at repository root.
 
 ## 1. Replace the demo career data
 
-Open:
+Open `career-data/profile.json` and replace the example content with verified personal data.
 
-```text
-career-data/profile.json
-```
+The profile supports:
 
-Replace the example content with the user's verified data.
-
-The profile currently supports:
-
-- name;
-- headline;
-- location;
-- professional summary;
+- name and headline;
+- location and professional summary;
 - public links;
 - capabilities;
 - work experience;
 - evidence points;
 - selected projects.
 
-## 2. Install and run locally
+## 2. Add the Markdown knowledge base
+
+Add factual `.md` files under `knowledge/`.
+
+Recommended structure:
+
+```text
+knowledge/
+├── about.md
+├── skills.md
+├── working-style.md
+├── claim-boundaries.md
+├── experience/
+│   └── company-name.md
+└── projects/
+    └── project-name.md
+```
+
+Each file should separate verified facts, personal contribution, evidence, status and claim boundaries. The assistant must not invent undocumented information.
+
+## 3. Add a personal DeepSeek key
+
+Copy `.env.example` to `.env.local` for local development:
+
+```bash
+cp .env.example .env.local
+```
+
+Add:
+
+```env
+DEEPSEEK_API_KEY=your_private_key
+DEEPSEEK_MODEL=deepseek-chat
+```
+
+Never commit `.env.local`, never publish the key and never use the `NEXT_PUBLIC_` prefix.
+
+For Vercel:
+
+1. Open **Project → Settings → Environment Variables**.
+2. Add `DEEPSEEK_API_KEY`.
+3. Optionally add `DEEPSEEK_MODEL=deepseek-chat`.
+4. Apply the variables to Production, Preview and Development.
+5. Redeploy.
+
+## 4. Install and run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open:
+Open `http://localhost:3000`.
 
-```text
-http://localhost:3000
-```
+Test both the portfolio and the **Ask this profile** assistant.
 
-## 3. Deploy to Vercel
+## 5. Deploy to Vercel
 
-1. Push the copied template to the user's GitHub repository.
+1. Push the copied template to the personal GitHub repository.
 2. Sign in to Vercel with GitHub.
 3. Create a new project.
 4. Select the personal repository.
 5. Keep the detected Next.js settings.
-6. Deploy.
+6. Add the DeepSeek environment variable.
+7. Deploy.
 
 Every later commit triggers a new Vercel deployment.
 
+## Acceptance check
+
+- the correct personal data is displayed;
+- public links work;
+- Markdown files contain no secrets;
+- the assistant answers from documented facts;
+- unsupported facts are not invented;
+- no API key is committed to GitHub;
+- attribution points to https://github.com/rollie1212/akos-main.
+
 ## Expected result
 
-The finished site should use the same AKOS Core visual foundation as the live reference while displaying the user's own verified career data.
+The finished site should use the AKOS Core visual foundation while displaying the user's own verified career data and an optional AI assistant powered by the user's own DeepSeek account.
 
-The template provides the foundation, not a copy of Andrii's personal content or the complete feature set of `akos-new`.
-
-## Security checklist
-
-Before publishing:
-
-- remove private contact details that should not be public;
-- verify every metric and achievement;
-- distinguish personal contribution from team contribution;
-- describe prototypes and MVPs accurately;
-- use secure `https://` links;
-- do not commit API keys or secrets.
-
-## Attribution
-
-Keep attribution to the original AKOS Core project:
-
-https://github.com/rollie1212/akos-main
+The template provides the foundation, not a copy of Andrii's personal content or every feature in `akos-new`.
 
 ## License
 
