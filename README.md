@@ -1,210 +1,95 @@
-# AKOS Core
+# AKOS
 
-**AKOS Core is a free, open-source, AI-native career operating system.**
+**AKOS is a free, open-source, AI-native career operating system.**
 
 It turns an existing CV, LinkedIn profile and project notes into a structured career knowledge base that can power:
 
 - a personal portfolio website;
-- future tailored resumes;
-- cover letters;
+- tailored resumes and cover letters;
 - job application messages;
 - interview preparation;
-- AI career assistants.
+- an AI career assistant grounded in Markdown.
 
-Live product site: https://akos-core.vercel.app
+## Repositories
 
-Live AKOS resume example: https://akos-mu.vercel.app/
+- Product and onboarding: https://github.com/rollie1212/akos-main
+- Personal reference implementation: https://github.com/rollie1212/akos-new
+- Live reference website: https://akos-mu.vercel.app/
 
-## The core idea
+## How the project is organized
 
-A resume should be an output, not the primary database of your professional experience.
+```text
+akos-main/
+├── app/          AKOS product website and onboarding
+├── docs/         setup and prompt documentation
+├── examples/     reusable examples
+└── template/     standalone portfolio copied by users
+```
+
+The `/template` folder is the product users copy into a new personal repository.
+
+## User workflow
 
 ```text
 CV + LinkedIn + project notes
               ↓
-AI-assisted fact extraction
-              ↓
-clarification and claim audit
+verified fact extraction
               ↓
 career-data/profile.json
               ↓
-Portfolio · CV · Cover letter · Interview preparation
+knowledge/*.md
+              ↓
+GitHub repository
+              ↓
+Vercel deployment
+              ↓
+personal portfolio + optional DeepSeek assistant
 ```
 
-## Free — AKOS Core
+## Quick start
 
-AKOS Core is currently the only available plan.
+1. Open the template folder:
+   https://github.com/rollie1212/akos-main/tree/main/template
+2. Create a new empty GitHub repository.
+3. Copy the **contents** of `/template` into the new repository root.
+4. Replace `career-data/profile.json` with the user's verified career profile.
+5. Add factual Markdown files under `knowledge/`.
+6. Import the personal repository into Vercel.
+7. Optionally add the user's own `DEEPSEEK_API_KEY` in Vercel Environment Variables.
+8. Deploy and test the portfolio and AI assistant.
 
-It includes:
+Detailed template instructions are in [`template/README.md`](template/README.md).
 
-- the open-source GitHub template;
-- the portable `career-data/profile.json` structure;
-- a four-step AI prompt workflow;
-- a generated career portfolio;
-- project case-study templates;
-- GitHub setup instructions;
-- Vercel deployment instructions;
-- automatic updates after every GitHub commit.
+## DeepSeek security
 
-**Price: free.**
+The optional AI assistant uses a server-side environment variable:
 
-AKOS Builder and AKOS Cloud are planned and marked as **Coming soon**.
-
-## Fastest setup
-
-### 1. Create your repository
-
-Open:
-
-https://github.com/rollie1212/akos-core/generate
-
-Create the repository in your own GitHub account.
-
-### 2. Prepare your source material
-
-Collect:
-
-- your current CV;
-- LinkedIn profile text;
-- project notes and links;
-- education and languages;
-- verified achievements and measurable results;
-- claim boundaries: facts or tools that must not be overstated.
-
-### 3. Run the AKOS prompt workflow
-
-Open:
-
-https://akos-core.vercel.app/prompts
-
-Use the prompts in order:
-
-1. extract verified facts;
-2. resolve missing or ambiguous information;
-3. generate the final `profile.json`;
-4. audit every claim before publishing.
-
-The detailed written guide is available in [`docs/CREATE_YOUR_PROFILE.md`](docs/CREATE_YOUR_PROFILE.md).
-
-### 4. Replace the demo profile
-
-Open:
-
-`career-data/profile.json`
-
-Replace the demo content with your generated JSON and commit the change.
-
-### 5. Deploy
-
-Import your repository into Vercel. See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).
-
-Every later GitHub commit will automatically update the public website.
-
-## Pages
-
-- `/` — AKOS Core product homepage;
-- `/get-started` — complete free setup workflow;
-- `/prompts` — prompt integration guide;
-- `/examples` — live AKOS resume and source examples;
-- `/pricing` — Free plan and future products marked Coming soon;
-- `/support` — support AKOS development.
-
-## Prompt integration
-
-Do not ask AI to immediately “make the CV better.”
-
-The recommended workflow is:
-
-```text
-Source documents
-      ↓
-Fact extraction
-      ↓
-Clarification questions
-      ↓
-Structured profile generation
-      ↓
-Factual audit
-      ↓
-GitHub commit
+```env
+DEEPSEEK_API_KEY=
+DEEPSEEK_MODEL=deepseek-chat
 ```
 
-This reduces invented metrics, exaggerated seniority and unsupported technical claims.
+The real key must never be committed to GitHub and must never use the `NEXT_PUBLIC_` prefix.
 
-## Example implementation
+## Product principles
 
-The primary reference example is Andrii Kysil’s live AKOS career system:
+- Career data belongs to the user.
+- The user's repository and deployment belong to the user.
+- AI must not invent employers, dates, metrics, skills or responsibilities.
+- Strong claims should be backed by evidence.
+- The portfolio remains usable without the AI assistant.
+- The template remains portable and self-hostable.
 
-https://akos-mu.vercel.app/
-
-It demonstrates:
-
-- clear professional positioning;
-- evidence-backed capabilities;
-- experience and project presentation;
-- recruiter-facing career materials;
-- a reusable career source of truth.
-
-## Repository structure
-
-```text
-app/                 Product and portfolio pages
-career-data/         Portable career source data
-docs/                Setup, prompt and deployment guides
-examples/            Reusable project templates
-public/              Static assets
-```
-
-## Local development
+## Development
 
 ```bash
-git clone https://github.com/rollie1212/akos-core.git
-cd akos-core
 npm install
 npm run dev
 ```
 
 Open `http://localhost:3000`.
 
-## Project case studies
-
-For stronger results, prepare one source document per major project using:
-
-[`examples/project-case-study-template.md`](examples/project-case-study-template.md)
-
-A useful project source explains:
-
-- the problem;
-- target users;
-- your actual role;
-- product decisions;
-- implementation;
-- tools used directly;
-- verified outcomes;
-- limitations and current status.
-
-## Product principles
-
-- Career data belongs to the user.
-- Claims must be backed by real experience.
-- AI must not invent skills, metrics, employers or responsibilities.
-- Structured source data must remain reusable outside AKOS.
-- Forking and self-hosting must remain possible.
-- The AKOS support link remains attributed to the original project.
-
-## Support AKOS development
-
-Every AKOS-generated site includes a link to support the development of the original AKOS project.
-
-The support destination is controlled by the central AKOS Core deployment. Fork users do not replace it with their own Buy Me a Coffee account.
-
-Central support page:
-
-https://akos-core.vercel.app/support
-
-## Roadmap
-
-See [`docs/ROADMAP.md`](docs/ROADMAP.md).
+To run the standalone user template locally, execute the same commands from inside `/template`.
 
 ## License
 
