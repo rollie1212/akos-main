@@ -7,20 +7,20 @@ It turns a CV, LinkedIn profile and project notes into structured career data th
 ## Project map
 
 - Product repository: https://github.com/rollie1212/akos-main
+- User template: https://github.com/rollie1212/akos-template
+- Create a personal repository: https://github.com/rollie1212/akos-template/generate
 - Personal reference repository: https://github.com/rollie1212/akos-new
 - Live reference website: https://akos-mu.vercel.app/
 
-## Repository structure
+## Repository roles
 
 ```text
-akos-main/
-├── app/          product website and onboarding
-├── docs/         setup and prompt documentation
-├── examples/     reusable examples
-└── template/     standalone portfolio copied by users
+akos-main      product website, prompts, onboarding and documentation
+akos-template  clean standalone repository users create from the template
+akos-new       Andrii's personal reference implementation
 ```
 
-The `/template` folder is the part users copy into a new personal repository.
+The canonical user template is now `akos-template`. The `/template` folder in this repository may be used for product development, but users should not copy it manually.
 
 ## User workflow
 
@@ -29,34 +29,28 @@ CV + LinkedIn + project notes
               ↓
 verified fact extraction
               ↓
-career-data/profile.json
+Use this template
               ↓
-knowledge/*.md
-              ↓
-copy /template into a personal repository
+career-data/profile.json + knowledge/*.md
               ↓
 Vercel deployment + personal DeepSeek key
               ↓
-personal AKOS Core portfolio + AI assistant
+personal AKOS portfolio + AI assistant
 ```
 
 ## Quick start
 
-1. Open the template folder:
-   https://github.com/rollie1212/akos-main/tree/main/template
-2. Create a new empty GitHub repository.
-3. Copy the **contents** of `/template` into the new repository root.
-4. Replace `career-data/profile.json` with verified career data.
-5. Add factual Markdown files under `knowledge/`.
-6. Import the personal repository into Vercel.
-7. Add `DEEPSEEK_API_KEY` in Vercel Environment Variables.
-8. Redeploy and test the portfolio and assistant.
+1. Open https://github.com/rollie1212/akos-template/generate
+2. Create a new repository in your GitHub account.
+3. Replace `career-data/profile.json` with verified career data.
+4. Replace the demo Markdown under `knowledge/` with factual career documents.
+5. Import the repository into Vercel.
+6. Add `DEEPSEEK_API_KEY` in Vercel Environment Variables.
+7. Redeploy and test the portfolio and assistant.
 
-Detailed instructions are in [`template/README.md`](template/README.md).
+Detailed template instructions are maintained in the `akos-template` README.
 
 ## DeepSeek security
-
-The optional assistant uses server-side environment variables:
 
 ```env
 DEEPSEEK_API_KEY=
@@ -93,8 +87,6 @@ npm run dev
 ```
 
 Open `http://localhost:3000`.
-
-To test the standalone portfolio template, run the same commands from inside `/template`.
 
 ## License
 
